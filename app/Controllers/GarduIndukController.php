@@ -3,27 +3,27 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-use App\Models\GudangIndukModel;
+use App\Models\GarduIndukModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
-class GudangIndukController extends BaseController
+class GarduIndukController extends BaseController
 {
 
-    protected $GudangIndukModel;
+    protected $GarduIndukModel;
 
     public function __construct()
     {
-        $this->GudangIndukModel = new GudangIndukModel();
+        $this->GarduIndukModel = new GarduIndukModel();
     }
 
     public function index()
     {
         $data = [
-            'title' => 'Gudang Induk',
-            'gudang_induk' => $this->GudangIndukModel->getGudangInduk()
+            'title' => 'Gardu Induk',
+            'gardu_induk' => $this->GarduIndukModel->getGarduInduk()
         ];
 
-        return view('gudang_induk/index', $data);
+        return view('gardu_induk/index', $data);
     }
 
     public function prosesTambah()
@@ -38,17 +38,17 @@ class GudangIndukController extends BaseController
         ]);
 
         if (!$validation->withRequest($this->request)->run()) {
-            return redirect()->to('/gudang_induk')->withInput()->with('validation', $validation);
+            return redirect()->to('/gardu_induk')->withInput()->with('validation', $validation);
         }
 
-        $this->GudangIndukModel->save([
+        $this->GarduIndukModel->save([
             'nama_gi' => $this->request->getPost('nama_gi'),
             'lokasi' => $this->request->getPost('lokasi'),
             'lat' => $this->request->getPost('lat'),
             'lng' => $this->request->getPost('lng')
         ]);
 
-        return redirect()->to('/gudang_induk');
+        return redirect()->to('/gardu_induk');
     }
 
     public function update($id)
@@ -67,20 +67,20 @@ class GudangIndukController extends BaseController
         }
 
         // Update data
-        $this->GudangIndukModel->update($id, [
+        $this->GarduIndukModel->update($id, [
             'nama_gi' => $this->request->getPost('nama_gi'),
             'lokasi' => $this->request->getPost('lokasi'),
             'lat' => $this->request->getPost('lat'),
             'lng' => $this->request->getPost('lng')
         ]);
 
-        return redirect()->to('/gudang_induk')->with('success', 'Data Gudang Induk berhasil diperbarui.');
+        return redirect()->to('/gardu_induk')->with('success', 'Data gardu Induk berhasil diperbarui.');
     }
 
     public function hapus($id)
     {
-        $this->GudangIndukModel->delete($id);
-        return redirect()->to('/gudang_induk')->with('hapus', 'Data Gudang Induk berhasil dihapus.');
+        $this->GarduIndukModel->delete($id);
+        return redirect()->to('/gardu_induk')->with('hapus', 'Data gardu Induk berhasil dihapus.');
     }
 
 }

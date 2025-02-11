@@ -4,24 +4,32 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\UserModel;
+use App\Models\GarduIndukModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class UserController extends BaseController
 {
     protected $userModel;
 
+
+    protected $garduIndukModel;
+
     public function __construct()
     {
         $this->userModel = new UserModel();
+        $this->garduIndukModel = new GarduIndukModel();
     }
     public function index()
     {
         $data = [
             'title' => 'User',
-            'user' => $this->userModel->findAll()
+            'user' => $this->userModel->getUser(),
+            'gardu_induk' => $this->garduIndukModel->findAll()
         ];
         return view('user/index', $data);
     }
+
+   
 
     public function prosesTambah()
     {
@@ -31,7 +39,7 @@ class UserController extends BaseController
             'nama' => 'required',
             'username' => 'required',
             'password' => 'required',
-           
+
         ]);
 
         if (!$validation->run($this->request->getPost())) {
@@ -42,7 +50,8 @@ class UserController extends BaseController
             'nama' => $this->request->getPost('nama'),
             'username' => $this->request->getPost('username'),
             'password' => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
-            'hak' => $this->request->getPost('hak')
+            'hak' => $this->request->getPost('hak'),
+            'id_gi' => $this->request->getPost('id_gi')
         ]);
 
         return redirect()->to('/user')->with('success', 'Data berhasil ditambahkan');
@@ -56,7 +65,7 @@ class UserController extends BaseController
             'nama' => 'required',
             'username' => 'required',
             'password' => 'required',
-            
+
         ]);
 
         if (!$validation->run($this->request->getPost())) {
@@ -67,7 +76,8 @@ class UserController extends BaseController
             'nama' => $this->request->getPost('nama'),
             'username' => $this->request->getPost('username'),
             'password' => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
-            'hak' => $this->request->getPost('hak')
+            'hak' => $this->request->getPost('hak'),
+            'id_gi' => $this->request->getPost('id_gi')
         ]);
 
         return redirect()->to('/user')->with('success', 'Data berhasil diubah');

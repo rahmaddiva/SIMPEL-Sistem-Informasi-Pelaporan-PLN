@@ -2,11 +2,13 @@
 <?= $this->section('content') ?>
 <!-- Begin Page Content -->
 <div class="container-fluid">
+
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800"><?= $title ?></h1>
 
     </div>
+
     <!-- Content Row -->
     <div class="row">
         <!-- Earnings (Monthly) Card Example -->
@@ -33,56 +35,34 @@
                     <?php endif; ?>
                     <!-- Button Tambah -->
                     <a href="#" class="btn btn-primary mb-3" data-toggle="modal" data-target="#modalTambah">Tambah
-                        User</a>
+                        Perangkat</a>
+
                     <!-- Modal Tambah Fullscreen -->
                     <div class="modal fade bd-example-modal-lg" id="modalTambah" tabindex="-1" role="dialog"
                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Tambah User</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">Tambah Perangkat</h5>
                                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true"></span>
                                     </button>
                                 </div>
-                                <form action="/proses-user" method="POST">
+                                <form action="/proses-perangkat" method="POST">
                                     <div class="modal-body row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="nama">Nama</label>
+                                                <label for="nama">Nama Perangkat</label>
                                                 <input type="text" class="form-control" id="nama" name="nama">
                                             </div>
-                                            <div class="form-group">
-                                                <label for="username">Username</label>
-                                                <input type="text" class="form-control" id="username" name="username">
-                                            </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="password">Password</label>
-                                                <input type="text" class="form-control" id="password" name="password">
-                                            </div>
-                                            <!-- select -->
-                                            <div class="form-group">
-                                                <label for="hak" class="col-sm-3 col-form-label">Hak Akses</label>
-                                                <select class="form-control" id="hak" name="hak">
-                                                    <option value="">Pilih Hak Akses</option>
-                                                    <option value="admin">Admin</option>
-                                                    <option value="user">User</option>
-                                                </select>
-                                            </div>
 
-                                        </div>
-                                        <div class="form-group ">
-                                            <label for="id_gi" class="col-sm-3 col-form-label">Gardu Induk</label>
-                                            <select class="form-control" id="id_gi" name="id_gi">
-                                                <option value="">Pilih Gardu Induk</option>
-                                                <?php foreach ($gardu_induk as $gi): ?>
-                                                    <option value="<?= $gi['id'] ?>"><?= $gi['nama_gi'] ?>,
-                                                        <?= $gi['lokasi'] ?>
-                                                    </option>
-                                                <?php endforeach; ?>
-                                            </select>
+                                        <div class="col-md-6"> <!-- Fixed missing div here -->
+                                            <div class="form-group">
+                                                <label for="jenis_perangkat">Jenis Perangkat</label>
+                                                <input type="text" class="form-control" id="jenis_perangkat"
+                                                    name="jenis_perangkat">
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
@@ -94,34 +74,31 @@
                             </div>
                         </div>
                     </div>
-
                     <!-- end modal tambah -->
                     <div class="table-responsive">
                         <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Nama</th>
-                                    <th>Username</th>
-                                    <th>GI</th>
+                                    <th>Nama Perangkat</th>
+                                    <th>Jenis Perangkat</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php $no = 1; ?>
-                                <?php foreach ($user as $row): ?>
+                                <?php foreach ($perangkat as $row): ?>
                                     <tr>
                                         <td><?= $no++ ?></td>
                                         <td><?= $row['nama'] ?></td>
-                                        <td><?= $row['username'] ?></td>
-                                        <td><?= $row['nama_gi'] ?>, <?= $row['lokasi'] ?></td>
+                                        <td><?= $row['jenis_perangkat'] ?></td>
                                         <td>
                                             <!-- button modal edit -->
                                             <button class="btn btn-sm btn-warning" data-toggle="modal"
                                                 data-target="#modalEdit<?= $row['id'] ?>"><i
                                                     class="fas fa-edit"></i></button>
 
-                                            <a href="/delete-user/<?= $row['id'] ?>" class="btn btn-sm btn-danger"
+                                            <a href="/delete-gi/<?= $row['id'] ?>" class="btn btn-sm btn-danger"
                                                 onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')"><i
                                                     class="fas fa-trash"></i></a>
 
@@ -137,48 +114,34 @@
     </div>
 </div>
 <!-- modal edit -->
-<?php foreach ($user as $row): ?>
+<?php foreach ($perangkat as $row): ?>
     <!-- Modal Edit -->
     <div class="modal fade bd-example-modal-lg" id="modalEdit<?= $row['id'] ?>" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit Gudang Induk</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Perangkat</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true"></span>
                     </button>
                 </div>
-                <form action="/update-user/<?= $row['id'] ?>" method="POST">
+                <form action="/update-perangkat/<?= $row['id'] ?>" method="POST">
                     <div class="modal-body row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="nama">Nama</label>
-                                <input type="text" class="form-control" id="nama" name="nama" value="<?= $row['nama'] ?>">
-                            </div>
-                            <div class="form-group">
-                                <label for="username">Username</label>
-                                <input type="text" class="form-control" id="username" name="username"
-                                    value="<?= $row['username'] ?>">
+                                <label for="nama<?= $row['id'] ?>">Nama Perangkat</label>
+                                <input type="text" class="form-control" id="nama<?= $row['id'] ?>" name="nama"
+                                    value="<?= $row['nama'] ?>">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="password">Password</label>
-                                <input type="text" class="form-control" id="password" name="password"
-                                    value="<?= $row['password'] ?>">
-                            </div>
-                            <!-- select -->
-                            <div class="form-group">
-                                <label for="hak" class="col-sm-3 col-form-label">Hak Akses</label>
-                                <select class="form-control" id="hak" name="hak" value="<?= $row['hak'] ?>">
-                                    <option value="<?= $row['hak'] ?>"><?= $row['hak'] ?></option>
-                                    <option value="admin">Admin</option>
-                                    <option value="user">User</option>
-                                </select>
+                                <label for="jenis_perangkat<?= $row['id'] ?>">Jenis Perangkat</label>
+                                <input type="text" class="form-control" id="jenis_perangkat<?= $row['id'] ?>"
+                                    name="jenis_perangkat" value="<?= $row['jenis_perangkat'] ?>">
                             </div>
                         </div>
-
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>

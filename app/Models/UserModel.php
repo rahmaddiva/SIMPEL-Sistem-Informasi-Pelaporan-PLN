@@ -12,6 +12,15 @@ class UserModel extends Model
     protected $returnType = 'array';
     protected $useSoftDeletes = false;
     protected $protectFields = true;
-    protected $allowedFields = ['nama', 'password', 'username', 'hak'];
+    protected $allowedFields = ['nama', 'password', 'username', 'hak', 'id_gi'];
+
+
+    public function getUser()
+    {
+        $builder = $this->db->table('tb_user');
+        $builder->select('tb_user.*, tb_gi.nama_gi, tb_gi.lokasi');
+        $builder->join('tb_gi', 'tb_gi.id = tb_user.id_gi');
+        return $builder->get()->getResultArray();
+    }
 
 }

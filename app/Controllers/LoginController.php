@@ -54,16 +54,16 @@ class LoginController extends BaseController
             'nama' => $user['nama'],
             'username' => $user['username'],
             'hak' => $user['hak'], // Tambahkan hak dari tabel user
+            'id_gi' => $user['id_gi'],
             'isLoggedIn' => true
         ]);
 
         session()->setFlashdata('success', 'Login berhasil!');
-
         // Redirect Berdasarkan hak
         if ($user['hak'] === 'admin') {
             return redirect()->to('/dashboard');
         } else {
-            return redirect()->to('/dashboarduser');
+            return redirect()->to('/dashboard');
         }
     }
 

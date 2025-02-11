@@ -42,33 +42,22 @@
                                     </div>
                                     <form class="user" action="/login/proses" method="post">
                                          <div class="form-group">
-        <label for="username">Username</label>
-        <input type="username" name="username" class="form-control" id="username" value="<?= old('username') ?>">
+                                        <label for="username">Username</label>
+                                        <input type="username" name="username" class="form-control" id="username" value="<?= old('username') ?>">
                                         </div>
                                         
                                         <div class="form-group">
                                             <label for="password">Password</label>
                                             <input type="password" name="password" class="form-control" id="password">
                                         </div>
-                                        <div class="form-group">
-                                            <div class="custom-control custom-checkbox small">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck">
-                                                <label class="custom-control-label" for="customCheck">Remember
-                                                    Me</label>
-                                            </div>
-                                        </div>
+                                       
                                         <button type="submit" class="btn btn-primary btn-user btn-block">
                                             Login
                                         </button>
                                         <hr>
                                     </form>
 
-                                    <div class="text-center">
-                                        <a class="small" href="forgot-password.html">Forgot Password?</a>
-                                    </div>
-                                    <div class="text-center">
-                                        <a class="small" href="register.html">Create an Account!</a>
-                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>

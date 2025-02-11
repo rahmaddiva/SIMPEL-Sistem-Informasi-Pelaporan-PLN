@@ -35,7 +35,7 @@
                     <?php endif; ?>
                     <!-- Button Tambah -->
                     <a href="#" class="btn btn-primary mb-3" data-toggle="modal" data-target="#modalTambah">Tambah
-                        Gudang Induk</a>
+                        Gardu Induk</a>
 
                     <!-- Modal Tambah Fullscreen -->
                     <div class="modal fade bd-example-modal-lg" id="modalTambah" tabindex="-1" role="dialog"
@@ -43,7 +43,7 @@
                         <div class="modal-dialog modal-lg" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Tambah Gudang Induk</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">Tambah Gardu Induk</h5>
                                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true"></span>
                                     </button>
@@ -63,11 +63,11 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="lat">Latitude</label>
-                                                <input type="text" class="form-control" id="lat" name="lat" readonly>
+                                                <input type="text" class="form-control" id="lat" name="lat" >
                                             </div>
                                             <div class="form-group">
                                                 <label for="lng">Longitude</label>
-                                                <input type="text" class="form-control" id="lng" name="lng" readonly>
+                                                <input type="text" class="form-control" id="lng" name="lng" >
                                             </div>
                                         </div>
                                         <div class="col-md-12 mt-3">
@@ -118,7 +118,7 @@
                             </thead>
                             <tbody>
                                 <?php $no = 1; ?>
-                                <?php foreach ($gudang_induk as $row): ?>
+                                <?php foreach ($gardu_induk as $row): ?>
                                     <tr>
                                         <td><?= $no++ ?></td>
                                         <td><?= $row['nama_gi'] ?></td>
@@ -147,14 +147,14 @@
     </div>
 </div>
 <!-- modal edit -->
-<?php foreach ($gudang_induk as $row): ?>
+<?php foreach ($gardu_induk as $row): ?>
     <!-- Modal Edit -->
     <div class="modal fade bd-example-modal-lg" id="modalEdit<?= $row['id'] ?>" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit Gudang Induk</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Gardu Induk</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true"></span>
                     </button>
@@ -177,12 +177,12 @@
                             <div class="form-group">
                                 <label for="lat_<?= $row['id'] ?>">Latitude</label>
                                 <input type="text" class="form-control" id="lat_<?= $row['id'] ?>" name="lat"
-                                    value="<?= $row['lat'] ?>" readonly>
+                                    value="<?= $row['lat'] ?>" >
                             </div>
                             <div class="form-group">
                                 <label for="lng_<?= $row['id'] ?>">Longitude</label>
                                 <input type="text" class="form-control" id="lng_<?= $row['id'] ?>" name="lng"
-                                    value="<?= $row['lng'] ?>" readonly>
+                                    value="<?= $row['lng'] ?>" >
                             </div>
                         </div>
                         <div class="col-md-12 mt-3">
